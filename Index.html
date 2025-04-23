@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CC Is Coming</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #ccc;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin-top: 20px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <h1>CC Is Coming</h1>
+  <p>Something big is dropping soon...</p>
+  <div id="countdown">Loading...</div>
+
+  <script>
+    const targetDate = new Date("May 16, 2025 00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const updateCountdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        clearInterval(updateCountdown);
+        countdown.innerHTML = "It’s here!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
